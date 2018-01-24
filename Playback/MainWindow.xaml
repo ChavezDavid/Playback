@@ -11,7 +11,7 @@
         <TextBox x:Name="txtRuta" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" IsEnabled="False"/>
         <Button x:Name="btnPlay" Content="Play" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="75" Click="btnPlay_Click"/>
         <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="90,92,0,0" VerticalAlignment="Top" Width="75" Click="btnStop_Click" IsEnabled="False"/>
-        <Slider x:Name="sldPosition" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="497"/>
+        <Slider x:Name="sldPosition" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="497" Thumb.DragCompleted="sldPosition_dragCompleted" Thumb.DragStarted="sldPosition_dragStarted"/>
         <Label x:Name="lblPosition" Content="0:00" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
         <Label x:Name="lblDuration" Content="0:00" HorizontalAlignment="Left" Margin="242,61,0,0" VerticalAlignment="Top"/>
 
