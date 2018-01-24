@@ -9,8 +9,11 @@
     <Grid>
         <Button x:Name="btnBuscar" Content="Buscar" HorizontalAlignment="Left" Margin="432,10,0,0" VerticalAlignment="Top" Width="75" Height="23" Click="btnBuscar_Click"/>
         <TextBox x:Name="txtRuta" HorizontalAlignment="Left" Height="23" Margin="10,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="417" IsEnabled="False"/>
-        <Button x:Name="btnPlay" Content="Play" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="75" Click="btnPlay_Click"/>
-        <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="90,38,0,0" VerticalAlignment="Top" Width="75" Click="btnStop_Click"/>
+        <Button x:Name="btnPlay" Content="Play" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="75" Click="btnPlay_Click"/>
+        <Button x:Name="btnStop" Content="Stop" HorizontalAlignment="Left" Margin="90,92,0,0" VerticalAlignment="Top" Width="75" Click="btnStop_Click" IsEnabled="False"/>
+        <Slider x:Name="sldPosition" HorizontalAlignment="Left" Margin="10,38,0,0" VerticalAlignment="Top" Width="497"/>
+        <Label x:Name="lblPosition" Content="0:00" HorizontalAlignment="Left" Margin="10,61,0,0" VerticalAlignment="Top"/>
+        <Label x:Name="lblDuration" Content="0:00" HorizontalAlignment="Left" Margin="242,61,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>

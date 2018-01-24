@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
+using System.Windows.Threading;
 
 namespace Playback
 {
@@ -25,10 +26,25 @@ namespace Playback
     {
         private Mp3FileReader reader;
         private WaveOut output;
+        DispatcherTimer timer;
 
         public MainWindow()
         {
             InitializeComponent();
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromMilliseconds(200);
+            timer.Tick += OnTimerTick;
+
+            sldPosition.DragLeave += sldPosition_DragCompleted;
+        }
+
+        private void OnTimerTick(object sender, EventArgs e)
+        {
+            if (reader != null)
+            {
+                lblPosition.Content = reader.CurrentTime.ToString();
+                sldPosition.Value = reader.CurrentTime.TotalSeconds;
+            }
         }
 
         private void btnBuscar_Click(object sender, RoutedEventArgs e)
@@ -50,6 +66,13 @@ namespace Playback
                 reader = new Mp3FileReader(txtRuta.Text);
                 output.Init(reader);
                 output.Play();
+                btnStop.IsEnabled = true;
+                btnPlay.IsEnabled = false;
+                lblDuration.Content = reader.TotalTime.ToString();
+                lblPosition.Content = reader.CurrentTime.ToString();
+                sldPosition.Maximum = reader.TotalTime.TotalSeconds;
+                sldPosition.Value = 0;
+                timer.Start();
             }else
             {
                 //Avisarle al usuario que elija un archivo
@@ -60,6 +83,7 @@ namespace Playback
         {
             reader.Dispose();
             output.Dispose();
+            timer.Stop();
         }
 
         private void btnStop_Click(object sender, RoutedEventArgs e)
@@ -67,6 +91,16 @@ namespace Playback
             if (output != null)
             {
                 output.Stop();
+                btnPlay.IsEnabled = true;
+                btnStop.IsEnabled = false;
+            }
+        }
+
+        private void sldPosition_DragCompleted(object sender, RoutedEventArgs e)
+        {
+            if (reader != null)
+            {
+                reader.CurrentTime = TimeSpan.FromSeconds(sldPosition.Value);
             }
         }
     }
